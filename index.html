@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<link rel="stylesheet" href="./css/index.css">
+<script src="./js/index.js"></script>
+</head>
+<body>
+	
+	<audio src="" id="audio" controls="true" style="display:none"></audio>
+
+	<div class="frame_top" role="banner" id="js_frame_top">
+		<div class="header_top">
+	        <div class="navlist">
+	            <ul>             
+	                <li class="mod_user" id="top_info"><p class="top_info unlogined">您还未登录，<a href="javascript:;">马上登录</a></p></li>
+	                <li class="nav_musicvip" id="musicvip"><span class="line">&nbsp;</span> <span class="musicvip_text"><a title="绿钻" href="http://vip.music.qq.com" target="_blank"><img src="./images/vip.png" alt="绿钻"><span>绿钻</span></a></span></li>
+			<li class="nav_musicbag"><span class="line">&nbsp;</span> <span class="musicbag_text"><a href="http://y.qq.com/topic/suixiangbao/index.html" target="_blank"><img src="./images/sui.png" alt="付费音乐包"><span>付费音乐包</span></a></span><a href="javascript:;" class="btn_open_musicbag" id="musicbag" style="display:none;"></a></li>
+	                <li class="nav_software"><span class="line">&nbsp;</span><a href="http://kg.qq.com/?pgv_ref=qqmusic.y.topmenu" target="_blank" title="全民K歌"><span>全民K歌</span></a></li>
+	                <li class="nav_software"><a href="http://y.qq.com/yanchu/?pgv_ref=qqmusic.y.topmenu" target="_blank" title="QQ演出"><span>QQ演出</span></a></li>             
+	                <li class="nav_qplay"><a href="http://y.qq.com/y/static/down/qplay.html?pgv_ref=qqmusic.y.topmenu" target="_blank" title="QPlay"><span>QPlay</span></a></li>
+	            </ul>
+	        </div>
+	    </div>
+		<div class="main_top" id="divtopmenu">
+			<h1 class="frame_logo"><img class="img_logo" src="./images/frame_logo_min.png" alt="QQ音乐"><a href="http://y.qq.com/"  class="logo" title="QQ音乐-中国最新最全免费正版高品质音乐平台！">QQ音乐</a></h1>
+			<div class="frame_search" style="display:none">
+				<a href="http://y.qq.com/y/static/s_search/search.html" class="hide" accesskey="s" target="contentFrame">需要搜索的朋友，在这里敲击回车键进入，或者按快捷键Alt加s进入</a>
+				<input type="text" value="找到好音乐" class="search_text" id="keyword" onfocus="if(this.value=='找到好音乐'){this.value='';};MUSIC.css.addClassName(this.parentNode, 'search_focus');MUSIC.widget.intellMatch.set(this.value);" onblur="if(this.value==''){this.value='找到好音乐';};MUSIC.css.removeClassName(this.parentNode, 'search_focus');MUSIC.widget.intellMatch.clear();" onkeydown="var event=MUSIC.event.getEvent();if(event.keyCode==13){if (window.frames['contentFrame'].location.href.indexOf('y.qq.com/y/static/s_search/')!=-1) { MUSIC.dom.get('contentFrame').src = 'http://y.qq.com/y/static/s_search/search.html?type=1';setTimeout(function(){top.frames['contentFrame'].g_simpleSearchChn.submit(MUSIC.dom.get('keyword').value.trim());}, 100); }	else {MUSIC.widget.intellMatch.search();}}" x-webkit-speech="" speech="" lang="zh-CN" autocomplete="off"><input type="button" value="搜索" onclick="if (window.frames['contentFrame'].location.href.indexOf('y.qq.com/y/static/s_search/')!=-1) { MUSIC.dom.get('contentFrame').src = 'http://y.qq.com/y/static/s_search/search.html?type=1';setTimeout(function(){top.frames['contentFrame'].g_simpleSearchChn.submit(MUSIC.dom.get('keyword').value.trim());}, 100); }	else {var event=MUSIC.event.getEvent();if(event.keyCode==13){}else MUSIC.widget.intellMatch.curIndex=-1;MUSIC.widget.intellMatch.search();}" id="search_form" class="go_search">
+				<div class="search_result" id="keywords_list">
+					<ul>
+					</ul>
+				</div>
+			</div>
+			<div class="navigation">
+				<ul id="divnavigation">
+					<li class="nav_home"><a href="about:blank" target="contentFrame" class="nonce"><span>音乐馆</span></a></li>
+					<li class="nav_mv"><a href="" target="contentFrame"><span>MV</span></a></li>
+					<li class="nav_mymusic"><a href="" target="contentFrame"><span>我的音乐</span></a></li>
+					<li class="nav_software"><a href="http://y.qq.com/download/index.html?pgv_ref=qqmusic.y.topmenu" target="_blank"><span>下载客户端</span></a></li>			
+				</ul>
+			</div>
+			<div class="sub_navigation" id="divsubmenu">
+				<!--音乐馆-->
+				<p class="sub_lib" style="display: block;">
+				<a href="about:blank"  target="contentFrame" class="nonce">首页</a>|
+				<a href="" target="contentFrame">排行榜</a>|
+				<a href="" target="contentFrame">歌单广场</a>|
+				<a href="" target="contentFrame">电台</a>|
+				<a href="" target="contentFrame">歌手</a>|
+				<a href="" target="contentFrame">独家首发</a>|
+				<a href="" target="contentFrame">专辑</a>
+				</p>
+				<p class="sub_mv" style="display: none;"><a href="http://i.y.qq.com/v8/fcg-bin/fcg_v8_mvout4web.fcg?format=html&amp;tpl=tpl&amp;pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV推荐</a>|<a href="/y/static/mv/mv_toplist.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV排行榜</a>|<a href="/y/static/mv/lib.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV库</a>|<a href="/y/static/mv/live/1.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">音乐现场</a>|<a href="/y/static/mv/topic/1.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV专题</a>|<a href="/y/static/mv/mv_play.html?cid=brh8ox942pb5wwk&amp;pgv_ref=qqmusic.y.topmenu" target="target">巅峰榜盛典</a></p>
+				<!--我的音乐-->
+				<p class="sub_mymusic" style="display: none;"><a href="/y/static/mymusic/mymusic_index.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">主页</a>|<a href="/y/static/mymusic/mymusic_albumlist.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">歌单</a>|<a href="/y/static/mymusic/mymusic_mvlist.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">MV收藏</a>|<a href="/y/static/mymusic/mymusic_follow_listen.html?type=mylisten&amp;pgv_ref=qqmusic.y.topmenu" target="contentFrame">听众</a>|<a href="/y/static/mymusic/mymusic_follow_listen.html?type=singer&amp;pgv_ref=qqmusic.y.topmenu" target="contentFrame">收听</a></p>
+				<!--Qplay-->
+				<p class="sub_qplay" style="display: none;"><a href="http://y.qq.com/y/static/down/qplay.html?pgv_ref=qqmusic.y.topmenu" target="_blank">功能介绍</a>|<a href="/y/static/qplay/qplay_coop.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame" class="nonce">合作厂商</a></p>
+				<!--下载客户端-->
+				<!--p class="sub_software"><a href="/y/static/down/index.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">首页</a>|<a href="/y/static/down/detail.html?pgv_ref=qqmusic.y.topmenu" target="contentFrame">下载</a></p-->
+			</div>
+		</div>
+	</div>
+
+	<div class="main_frame" role="main" id="divmain">
+		<iframe name="contentFrame" id="contentFrame" onload="try{if(!(window.frames['contentFrame'].location.href.indexOf('v8_4web')!=-1||window.frames['contentFrame'].location.href.indexOf('about:blank')!=-1)){hideIndex()}else{showIndex()};}catch(e){}" width="100%" height="1374px" allowtransparency="true" scrolling="no" border="0" frameborder="0" src="about:blank" style="display: none;">
+		</iframe>
+	</div>
+
+	<div class="layout_2" id="index_div" style="display: block;">
+	        <div class="main_container">
+	            <!--S 焦点图-->
+	            <div class="mod_focus_show" id="divimgplay"><a href="javascript:;" class="slide_prev" >上一个</a><a href="javascript:;" class="slide_next" >下一个</a><ul class="mod_focus_pic" id="divimginfog_imgPlayer"><li style="display: none;"><a href="http://y.qq.com/topic/zzhgq03/index.html"  target="_blank"><img src="./images/big0120160216222716.jpg" alt="追踪好歌曲：本期刷脸刷出新高度！" width="700" height="320"></a></li><li style="display: block;"><a href="http://share.y.qq.com/l?g=2559&amp;g_f=yqqjiaodian"  target="_blank"><img src="./images/big0620160216135711.jpg" alt="鹿晗数字专辑3期（正售）" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/#type=album&amp;mid=001pG52T0w14Kp" target="_blank"><img src="./images/big0220160218195808.jpg" alt="《Like Romance Comics》" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/#type=taoge&amp;id=3201256475"  target="_blank"><img src="./images/big0320160216222736.jpg" alt="大话好歌曲：体内的洪荒之力！终于爆发了！" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=nkp1ywc6urxl9ye"  target="_blank"><img src="./images/big0520160217193019.jpg" alt="巅峰榜：劲歌热舞助你醒脑！" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/topic/yt122/index.html"  target="_blank"><img src="./images/big0420160216222800.jpg" alt="乐谈：只要爱对了人" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/#type=taoge&amp;id=806049800"  target="_blank"><img src="./images/big0820160216164228.jpg" alt="第58届格莱美全回顾！" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/topic/sd03/index.html"  target="_blank"><img src="./images/big0220160214211131.jpg" alt="盛典列传：朗朗周杰伦双星联弹《红尘客栈》" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/#type=taoge&amp;id=2603869959"  target="_blank"><img src="./images/big0820160218195919.jpg" alt="五秒盛夏演唱会" width="700" height="320"></a></li><li style="display: none;"><a href="http://y.qq.com/vip/2016ffb/index.html"  target="_blank"><img src="./images/big0920160218195941.jpg" alt="付费包提升计划活动" width="700" height="320"></a></li></ul><div class="focus_switch" id="divpageinfog_imgPlayer"><a href="javascript:;"   class="">0</a><a href="javascript:;"  class="current">1</a><a href="javascript:;"  class="">2</a><a href="javascript:;"  class="">3</a><a href="javascript:;"  class="">4</a><a href="javascript:;"   class="">5</a><a href="javascript:;"   class="">6</a><a href="javascript:;"   class="">7</a><a href="javascript:;"  class="">8</a><a href="javascript:;"  class="">9</a></div></div>
+	            <!--E 焦点图-->
+	            <!--S 在线首发-->
+	            <div class="mod_first">
+	                <div class="title"><h2>在线首发</h2></div>
+	                <div class="mod_more"><a target="contentFrame" href="" class="mod_more_link" title="更多">更多</a></div>
+	                <div class="mod_cp" id="divalbumtag">
+	                    <a href="javascript:;" class="cp_prev_disabled" title="上一页"></a>
+	                    <a href="javascript:;" name="script_btn" class="cp_next" title="下一页"></a>
+	                </div>
+	                <div class="mod_content">
+	                    <div class="slide_content">
+	                        <ul class="mod_first_list" id="divalbumlist">
+								
+	                            <li>
+	                                <a target="contentFrame" href="" title="Reloaded +（重启 +）">
+	                                    <img width="130" height="130" alt="Reloaded +（重启 +）" title="Reloaded +（重启 +）" src="./images/003btbWd24RwuG.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="Reloaded +（重启 +）">Reloaded +（重启 +）</strong>
+					    
+							
+							
+							<strong class="album_singer" title="鹿晗"> 鹿晗 </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="中国好歌曲第三季 第3期">
+	                                    <img width="130" height="130" alt="中国好歌曲第三季 第3期" title="中国好歌曲第三季 第3期" src="./images/001pe3TF4Arpva.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="中国好歌曲第三季 第3期">中国好歌曲第三季 第3期</strong>
+					    
+							
+							
+							<strong class="album_singer" title="中国好歌曲"> 中国好歌曲 </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="中国之星 总决赛">
+	                                    <img width="130" height="130" alt="中国之星 总决赛" title="中国之星 总决赛" src="./images/000bg2fH4dgYoa.jpg">
+	                                    <span class="icon_play" title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="中国之星 总决赛">中国之星 总决赛</strong>
+					    
+							
+							
+							<strong class="album_singer" title="中国之星"> 中国之星 </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="Reminiscence 全球唯一新歌Live演唱会">
+	                                    <img width="130" height="130" alt="Reminiscence 全球唯一新歌Live演唱会" title="Reminiscence 全球唯一新歌Live演唱会" src="./images/003sw6mQ3lplN0.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="Reminiscence 全球唯一新歌Live演唱会">Reminiscence 全球唯一新歌Live演唱会</strong>
+					    
+							
+							
+							<strong class="album_singer" title="萧敬腾"> 萧敬腾 </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="Kaleidoscope">
+	                                    <img width="130" height="130" alt="Kaleidoscope" title="Kaleidoscope" src="./images/003fOD973M2q6R.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="Kaleidoscope">Kaleidoscope</strong>
+					    
+							
+							
+							<strong class="album_singer" title="Khatia Buniatishvili"> Khatia Buniatishvili </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="QQ音乐巅峰尊享会-范玮琪上海尊享会">
+	                                    <img width="130" height="130" alt="QQ音乐巅峰尊享会-范玮琪上海尊享会" title="QQ音乐巅峰尊享会-范玮琪上海尊享会" src="./images/0036ua5Q1dzWMa.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="QQ音乐巅峰尊享会-范玮琪上海尊享会">QQ音乐巅峰尊享会-范玮琪上海尊享会</strong>
+					    
+							
+							
+							<strong class="album_singer" title="范玮琪"> 范玮琪 </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="투유 프로젝트 - 슈가맨 Part.16">
+	                                    <img width="130" height="130" alt="투유 프로젝트 - 슈가맨 Part.16" title="투유 프로젝트 - 슈가맨 Part.16" src="./images/003FWVjs2rvULq.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="투유 프로젝트 - 슈가맨 Part.16">투유 프로젝트 - 슈가맨 Part.16</strong>
+					    
+							
+							
+							<strong class="album_singer" title="투유 프로젝트 - 슈가맨"> 투유 프로젝트 - 슈가맨 </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="白日梦想家 II">
+	                                    <img width="130" height="130" alt="白日梦想家 II" title="白日梦想家 II" src="./images/002R8S7Q2YFsAg.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="白日梦想家 II">白日梦想家 II</strong>
+					    
+							
+							
+							<strong class="album_singer" title="魏晨"> 魏晨 </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="EXIT:E">
+	                                    <img width="130" height="130" alt="EXIT:E" title="EXIT:E" src="./images/003joxcx05OWDf.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="EXIT:E">EXIT:E</strong>
+					    
+							
+							
+							<strong class="album_singer" title="WINNER"> WINNER </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                            <li>
+	                                <a target="contentFrame" href="" class="mod_poster_130" title="All I Need (Deluxe Version)">
+	                                    <img width="130" height="130" alt="All I Need (Deluxe Version)" title="All I Need (Deluxe Version)" src="./images/003YN5ck33ltuO.jpg">
+	                                    <span class="icon_play"  title="播放"></span>
+	                                    <span class="shadow"></span>
+	                                    <strong class="album_name" title="All I Need (Deluxe Version)">All I Need (Deluxe Version)</strong>
+					    
+							
+							
+							<strong class="album_singer" title="Foxes"> Foxes </strong>
+							
+						
+	                                    
+	                                </a>
+	                            </li>
+								
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <!--E 在线首发-->
+	            <!--S MV首播-->
+	            <div class="mod_mv">
+	                <div class="title"><h2>MV首播</h2></div>
+	                <div class="mod_more"><a target="contentFrame" href="" class="mod_more_link" title="更多">更多</a></div>
+	                <div class="mod_content">
+	                    <div class="slide_content">
+	                        <ul class="mod_mv_list">
+								<li>
+	                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="沦陷">
+	                                    <img alt="沦陷" title="沦陷" src="./images/cover_mine_130.jpg">
+	                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+										<span class="icon_today"></span>
+	                                </a>
+	                                <p>
+										<a href="javascript:;" name="script_btn" class="mv_name" title="沦陷">沦陷</a>
+										<span> - </span>
+										<a target="contentFrame" href="" class="singer_name" title="李嘉格"> 李嘉格 </a>
+									</p>
+									<p>魔幻般的嗓音让人沦陷</p>
+	                                <p><span class="date">2016-02-19</span></p>
+	                            </li>
+								
+								<li>
+	                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="Stay">
+	                                    <img alt="Stay" title="Stay" src="./images/1455787148844084510.jpg">
+	                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+									
+	                                </a>
+	                                <p>
+						<a href="javascript:;" name="script_btn" class="mv_name" title="Stay">Stay</a>
+						<span> - </span>
+						
+							
+							
+							<a target="contentFrame" href="" class="singer_name" title="Kygo"> Kygo </a>
+							
+							/
+							<a target="contentFrame" href="" class="singer_name" title="Maty Noyes"> Maty Noyes </a>
+							
+						
+					</p>
+									<p>Kygo新单MV大首播</p>
+	                                <p><span class="date">2016-02-18</span></p>
+	                            </li>
+								
+								<li>
+	                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="That's on You">
+	                                    <img alt="That's on You" title="That's on You" src="./images/1455783691657084800.jpg">
+	                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+									
+	                                </a>
+	                                <p>
+						<a href="javascript:;" name="script_btn" class="mv_name" title="That's on You">That's on You</a>
+						<span> - </span>
+						
+							
+							
+							<a target="contentFrame" href="" class="singer_name" title="KiD Ink"> KiD Ink </a>
+							
+						
+					</p>
+									<p>这俩磨人的女粉丝</p>
+	                                <p><span class="date">2016-02-16</span></p>
+	                            </li>
+								
+								<li>
+	                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="在你左右">
+	                                    <img alt="在你左右" title="在你左右" src="./images/1455777247965084510.jpg">
+	                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+									
+	                                </a>
+	                                <p>
+						<a href="javascript:;" name="script_btn" class="mv_name" title="在你左右">在你左右</a>
+						<span> - </span>
+						
+							
+							
+							<a target="contentFrame" href="" class="singer_name" title="吴莫愁"> 吴莫愁 </a>
+							
+						
+					</p>
+									<p>小鹿乱撞的少女情怀</p>
+	                                <p><span class="date">2016-02-18</span></p>
+	                            </li>
+								
+								<li>
+	                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="ALWAYS">
+	                                    <img alt="ALWAYS" title="ALWAYS" src="./images/1455776322224084800.jpg">
+	                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+									
+	                                </a>
+	                                <p>
+						<a href="javascript:;" name="script_btn" class="mv_name" title="ALWAYS">ALWAYS</a>
+						<span> - </span>
+						
+							
+							
+							<a target="contentFrame" href="" class="singer_name" title="윤미래"> 윤미래 </a>
+							
+						
+					</p>
+									<p>《太阳的后裔》韩剧插曲</p>
+	                                <p><span class="date">2016-02-17</span></p>
+	                            </li>
+								
+								<li>
+	                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="Do What Ya Gotta Do">
+	                                    <img alt="Do What Ya Gotta Do" title="Do What Ya Gotta Do" src="./images/1455767572324084510.jpg">
+	                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+									
+	                                </a>
+	                                <p>
+						<a href="javascript:;" name="script_btn" class="mv_name" title="Do What Ya Gotta Do">Do What Ya Gotta Do</a>
+						<span> - </span>
+						
+							
+							
+							<a target="contentFrame" href="" class="singer_name" title="Bryan Adams"> Bryan Adams </a>
+							
+						
+					</p>
+									<p>看摇滚巨星被捂脸</p>
+	                                <p><span class="date">2016-02-18</span></p>
+	                            </li>
+								
+								<li>
+	                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="연애하고 싶다">
+	                                    <img alt="연애하고 싶다" title="연애하고 싶다" src="./images/1455766693455084510.jpg">
+	                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+									
+	                                </a>
+	                                <p>
+						<a href="javascript:;" name="script_btn" class="mv_name" title="연애하고 싶다">연애하고 싶다</a>
+						<span> - </span>
+						
+							
+							
+							<a target="contentFrame" href="" class="singer_name" title="와블"> 와블 </a>
+							
+						
+					</p>
+									<p>好甜！该谈个恋爱了</p>
+	                                <p><span class="date">2016-02-15</span></p>
+	                            </li>
+								
+								<li>
+	                                <a href="javascript:;" name="script_btn" class="mod_poster_160" title="Crawling South">
+	                                    <img alt="Crawling South" title="Crawling South" src="./images/1455759784013084510.jpg">
+	                                    <span class="icon_play" title="播放" onmouseover="this.className='icon_play icon_play_hover'" onmouseout="this.className='icon_play'"></span>
+									
+	                                </a>
+	                                <p>
+						<a href="javascript:;" name="script_btn" class="mv_name" title="Crawling South">Crawling South</a>
+						<span> - </span>
+						
+							
+							
+							<a target="contentFrame" href="" class="singer_name" title="Heartstreets"> Heartstreets </a>
+							
+						
+					</p>
+									<p>开口跪系列太赞了</p>
+	                                <p><span class="date">2016-02-14</span></p>
+	                            </li>
+								
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <!--E MV首播-->
+	            <!--S 官方推荐-->
+	            <div class="mod_recommend">
+	                <div class="mod_recommend_1">
+	                    <div class="title"><h2>新歌推荐</h2></div>
+	                    <div class="mod_t_play"><a href="javascript:;" name="script_btn" class="mod_play" title="播放">播放</a><a href="javascript:;" name="script_btn" class="mod_add" title="添加">添加</a></div>
+	                    <ul class="mod_sort_index" id="divsongtag"><li class="first current"> <a href="javascript:;"  class="">华语</a> </li><li> <a href="javascript:;"  class="">韩语</a> </li><li class="last"> <a href="javascript:;"  class="">欧美</a> </li></ul>
+	                    <div class="mod_content class_songlist">
+	                        <ol class="recommend_list" id="divsonglist1"><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>0</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="封印（Excited）">封印（Excited）</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="鹿晗">鹿晗</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon1">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon1">添加</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_like_n">喜欢</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_fav_n">收藏到歌单</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_share_n">分享</a></div>
+	                        </li>
+	                        <li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>1</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="燕归巢">燕归巢</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="许嵩">许嵩</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon2">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon2">添加</a><a href="javascript:;" mid="000Nz08A0aZNuz" title="喜欢" class="btn_like" stat="Rankingn.icon2">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon2">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon2">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>2</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="我好得闲">我好得闲</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="容祖儿">容祖儿</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon3">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon3">添加</a><a href="javascript:;" mid="003KB29p306wWe" title="喜欢" class="btn_like" stat="Rankingn.icon3">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon3">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon3">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>3</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="Show Me">Show Me</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="林峯">林峯</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon4">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon4">添加</a><a href="javascript:;" mid="004IDzYz0zHEJU" title="喜欢" class="btn_like" stat="Rankingn.icon4">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon4">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon4">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>4</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="示弱">示弱</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="魏晨">魏晨</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon5">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon5">添加</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_like_n">喜欢</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_fav_n">收藏到歌单</a><a href="javascript:;" title="暂不提供此歌曲服务" class="btn_share_n">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>5</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="深圳湾">深圳湾</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="杨嘉松">杨嘉松</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon6">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon6">添加</a><a href="javascript:;" mid="003eFaNA1pNbxH" title="喜欢" class="btn_like" stat="Rankingn.icon6">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon6">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon6">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>6</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="有理想">有理想</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="李荣浩">李荣浩</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon7">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon7">添加</a><a href="javascript:;" mid="002EgEwY30Wf2t" title="喜欢" class="btn_like" stat="Rankingn.icon7">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon7">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon7">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>7</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="到不了 (《寻找爱的冒险》电视剧插曲)">到不了 (《寻找爱的冒险》电视剧插曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="陈翔">陈翔</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon8">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon8">添加</a><a href="javascript:;" mid="0045nFei0KrZZe" title="喜欢" class="btn_like" stat="Rankingn.icon8">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon8">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon8">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>8</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="一起奔放 (《青蛙王国之冰冻大冒险》动画电影主题曲)">一起奔放 (《青蛙王国之冰冻大冒险》动画电影主题曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="孙楠">孙楠</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon9">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon9">添加</a><a href="javascript:;" mid="0023uIfY0Y6IOi" title="喜欢" class="btn_like" stat="Rankingn.icon9">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon9">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon9">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>9</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="不如怀念 (《五鼠闹东京》电视剧插曲)">不如怀念 (《五鼠闹东京》电视剧插曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="陈楚生">陈楚生</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon10">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon10">添加</a><a href="javascript:;" mid="000jUWRF2mngd6" title="喜欢" class="btn_like" stat="Rankingn.icon10">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon10">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon10">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>10</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="恭喜发财 2016 (《澳门风云3》电影插曲)">恭喜发财 2016 (《澳门风云3》电影插曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="刘德华">刘德华</a> / <a href="" target="contentFrame" title="李宇春">李宇春</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon11">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon11">添加</a><a href="javascript:;" mid="001i94cz1QVFYY" title="喜欢" class="btn_like" stat="Rankingn.icon11">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon11">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon11">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>11</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="情愿错过白天 (《消失爱人》电影剧情曲)">情愿错过白天 (《消失爱人》电影剧情曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="黎明">黎明</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.icon12">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.icon12">添加</a><a href="javascript:;" mid="0004YSJh1Hdkji" title="喜欢" class="btn_like" stat="Rankingn.icon12">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.icon12">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.icon12">分享</a></div></li></ol>
+	                    </div>
+	                </div>
+	                <div class="mod_recommend_2">
+						<!-- a name="btnlazyload" _func="g_trackServ.getSongsCount('divsonglist2', 'span');"></a -->
+	                    <div class="title"><h2>热歌推荐</h2></div>
+	                    <div class="mod_t_play"><a href="javascript:;" name="script_btn" class="mod_play" title="播放">播放</a><a href="javascript:;" name="script_btn" class="mod_add" title="添加">添加</a></div>
+	                    <div class="mod_content class_songlist">
+	                        <ol class="recommend_list" id="divsonglist2"><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>0</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="我们不该这样的 (《北上广不相信眼泪》电视剧片尾曲)">我们不该这样的 (《北上广不相信眼泪》电视剧片尾曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="张赫宣">张赫宣</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="00495F3N3DQeRg" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>1</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="陪你度过漫长岁月 (《陪安东尼度过漫长岁月》电影主题曲|《Sleep Alone》国语版)">陪你度过漫长岁月 (《陪安东尼度过漫长岁月》电影主题曲|《Sleep Alone》国语版)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="陈奕迅">陈奕迅</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="003ULL5o2D7UMu" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true" class=""><em>2</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''" class=""><span class="music_name"><a target="contentFrame" href=""  title="不将就 (《何以笙箫默》电影片尾曲)">不将就 (《何以笙箫默》电影片尾曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="李荣浩">李荣浩</a></span></h5><span class="count " style="display: inline-block;"></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="000edAg12jLBrN" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>3</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href=""  title="勋章 (《我是证人》电影主题曲)">勋章 (《我是证人》电影主题曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="鹿晗">鹿晗</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="001vBZtU09AoiB" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>4</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="再见">再见</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="G.E.M. 邓紫棋">G.E.M. 邓紫棋</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="003sYHuC3aBd4r" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>5</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="一半">一半</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="薛之谦">薛之谦</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="003EKHdv2KvTc6" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>6</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="红颜旧 (《琅琊榜》电视剧插曲)">红颜旧 (《琅琊榜》电视剧插曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="刘涛">刘涛</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="002IySEk3T3l3L" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>7</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="剩下的盛夏">剩下的盛夏</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="TFBOYS">TFBOYS</a> / <a href="" target="contentFrame" title="嘻游记">嘻游记</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="003JxfgA21kaiK" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>8</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="竹林抚琴">竹林抚琴</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="夏婉安">夏婉安</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="003HwSzs2K8zBv" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>9</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="一次就好 (《夏洛特烦恼》电影暖水曲)">一次就好 (《夏洛特烦恼》电影暖水曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="沈腾">沈腾</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="000g7xvb2L9bzT" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true" class=""><em>10</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''" class=""><span class="music_name"><a target="contentFrame" href="" title="一个人 (《前任2：备胎反击战》电影主题曲)">一个人 (《前任2：备胎反击战》电影主题曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="张艺兴">张艺兴</a></span></h5><span class="count " style="display: inline-block;"></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="003Kf2wo2cowwV" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li><li onmouseover="this.className = 'hover';" onmouseout="this.className = '';" draggable="true"><em>11</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><span class="music_name"><a target="contentFrame" href="" title="请跟我联络 (《怦然星动》电影主题曲)">请跟我联络 (《怦然星动》电影主题曲)</a></span><span class="recommend_singer "><a href="" target="contentFrame" title="李易峰">李易峰</a></span></h5><span class="count "></span><div class="list_cp"><a href="javascript:;" title="播放" class="btn_play" stat="Rankingn.iconundefined">播放</a><a href="javascript:;" title="添加" class="btn_add" stat="Rankingn.iconundefined">添加</a><a href="javascript:;" mid="000EBKAd3pcoQ2" title="喜欢" class="btn_like" stat="Rankingn.iconundefined">喜欢</a><a href="javascript:;" title="收藏到歌单" class="btn_fav" stat="Rankingn.iconundefined">收藏到歌单</a><a href="javascript:;" title="分享" class="btn_share" stat="Rankingn.iconundefined">分享</a></div></li></ol>
+	                    </div>
+	                </div>
+	            </div>
+	            <!--E 官方推荐-->
+	            <!--S 精选集-->
+	            <div class="mod_special">
+	                <div class="title"><h2>精选集</h2></div>
+	                <div class="mod_content">
+	                    <ul class="special_list">
+							<li class="mod_cover">
+	                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=artx6eb4qnw2ccw&amp;pgv_ref=qqmusic.y.index.Choose.pic1" class="mod_poster" target="_blank" title="MV精选"><img width="270" height="270" alt="MV精选" title="MV精选" src="./images/20151015175001.jpg"></a>
+	                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=artx6eb4qnw2ccw&amp;pgv_ref=qqmusic.y.index.Choose.title1" target="_blank" title="MV精选">MV精选</a></h5>
+	                            <p class="mod_special_text">音乐抚慰青春之痛，追忆那时的蜜语甜言。</p>
+	                        </li>
+							<li>
+	                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=1iqnfiyrsz3yn79&amp;pgv_ref=qqmusic.y.index.Choose.pic2" target="_blank" class="mod_poster_130" title="相恋跨越时空"><img width="130" height="130" alt="相恋跨越时空" title="相恋跨越时空" src="./images/20151015160924.jpg"></a>
+	                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=1iqnfiyrsz3yn79&amp;pgv_ref=qqmusic.y.index.Choose.title2" target="_blank" title="相恋跨越时空">相恋跨越时空</a></h5>
+	                        </li>
+							<li>
+	                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=p3q7f9cuybrvezj&amp;pgv_ref=qqmusic.y.index.Choose.pic3" target="_blank" class="mod_poster_130" title="一枝独秀更耀眼！"><img width="130" height="130" alt="一枝独秀更耀眼！" title="一枝独秀更耀眼！" src="./images/20151015161200.jpg"></a>
+	                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=p3q7f9cuybrvezj&amp;pgv_ref=qqmusic.y.index.Choose.title3" target="_blank" title="一枝独秀更耀眼！">一枝独秀更耀眼！</a></h5>
+	                        </li>
+							<li>
+	                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=gve4um0ht2ls9xn&amp;pgv_ref=qqmusic.y.index.Choose.pic4" target="_blank" class="mod_poster_130" title="音乐和短裙最配"><img width="130" height="130" alt="音乐和短裙最配" title="音乐和短裙最配" src="./images/20151015161125.jpg"></a>
+	                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=gve4um0ht2ls9xn&amp;pgv_ref=qqmusic.y.index.Choose.title4" target="_blank" title="音乐和短裙最配">音乐和短裙最配</a></h5>
+	                        </li>
+							<li>
+	                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=cb7l6mwyjxqctqo&amp;pgv_ref=qqmusic.y.index.Choose.pic5" target="_blank" class="mod_poster_130" title="音乐时尚两不误"><img width="130" height="130" alt="音乐时尚两不误" title="音乐时尚两不误" src="./images/20151015160855.jpg"></a>
+	                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=cb7l6mwyjxqctqo&amp;pgv_ref=qqmusic.y.index.Choose.title5" target="_blank" title="音乐时尚两不误">音乐时尚两不误</a></h5>
+	                        </li>
+							<li>
+	                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=0afhqay0ads6hie&amp;pgv_ref=qqmusic.y.index.Choose.pic6" target="_blank" class="mod_poster_130" title="好的歌手会搞怪"><img width="130" height="130" alt="好的歌手会搞怪" title="好的歌手会搞怪" src="./images/20151015161017.jpg"></a>
+	                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=0afhqay0ads6hie&amp;pgv_ref=qqmusic.y.index.Choose.title6" target="_blank" title="好的歌手会搞怪">好的歌手会搞怪</a></h5>
+	                        </li>
+							<li>
+	                            <a href="http://y.qq.com/y/static/mv/mv_play.html?cid=zk1f1yvcl2v4hwb&amp;pgv_ref=qqmusic.y.index.Choose.pic7" target="_blank" class="mod_poster_130" title="静享一曲中国风"><img width="130" height="130" alt="静享一曲中国风" title="静享一曲中国风" src="./images/20151015161055.jpg"></a>
+	                            <h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a href="http://y.qq.com/y/static/mv/mv_play.html?cid=zk1f1yvcl2v4hwb&amp;pgv_ref=qqmusic.y.index.Choose.title7" target="_blank" title="静享一曲中国风">静享一曲中国风</a></h5>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	            <!--E 精选集-->
+	        </div>
+	        <div class="side_container">
+	        	<!--S 用户未登录-->
+	            <div class="mod_login" id="logintab" style="display: block;">
+	            	<a href="javascript:;"  class="btn_login" title="用户登录">用户登录</a>
+	            </div>
+	            <!--E 用户未登录-->
+	            <!--S 用户信息-->
+	            <div class="mod_user" id="userInfo" style="display:none;">
+	                <div class="mod_content">
+	                    <div class="mod_user_info" id="mod_user_info">
+	                    </div>
+	                    <div class="mod_tips" id="speed_tips" style="display:none;" >
+	                    </div>
+	                    <ul class="mod_user_statistic" id="user_summary">
+	                        
+	                    </ul>
+	                </div>
+	            </div>
+	            <!--S 客户端下载-->
+	            <div class="mod_ad" style="display:block;" id="divmodads"><ul id="divimginfog_imgPlayer2"><li class="current" style="display: none;"><a href="http://v.qq.com/cover/k/k0lt6oj7clm9b1g.html"  target="_blank"><img src="./images/20160201142318.jpg" alt="Rain演唱会"></a></li><li style="display: none;"><a href="http://mobile.qzone.qq.com/l?g=2465"  target="_blank"><img src="./images/20160128151802.jpg" alt="范玮琪尊享会回顾"></a></li><li style="display: none;"><a href="http://mobile.qzone.qq.com/l?g=2512"  target="_blank"><img src="./images/20160202205800.jpg" alt="萧敬腾签唱会"></a></li><li style="display: block;"><a href="http://qzs.qq.com/qzone/v6/v6_config/pact.html?act=10024&amp;g_f=1001"  target="_blank"><img src="./images/20160114101033.jpg" alt="陈奕迅天津演唱会"></a></li><li style="display: none;"><a href="http://mobile.qzone.qq.com/l?g=2274"  target="_blank"><img src="./images/20151230185555.jpg" alt="最好的时光跨年演唱会"></a></li></ul><div class="switch" id="divpageinfog_imgPlayer2"><a href="javascript:;"   class="">0</a><a href="javascript:;"   class="">1</a><a href="javascript:;"   class="">2</a><a href="javascript:;"   class="current">3</a><a href="javascript:;"   class="">4</a></div></div>
+	            <!--E 客户端下载-->
+	            <!--E 用户信息-->
+				<div class="mod_forme" style="display:none;" id="id_forme">
+	                <div class="title">
+	                    <h2>发现音乐</h2>
+	                </div>
+	                <div class="mod_content">
+	                    <ul class="push_list" id="id_recomlist">
+	                        
+	                    </ul>
+	                    <div class="mod_page">
+	                        <a href="javascript:;" class="prev" id="id_formeprev" title="上一页"><span>&lt;</span></a><a href="javascript:;" id="id_formepage">1</a><a href="javascript:;" class="next" id="id_formenext" title="下一页"><span>&gt;</span></a>
+	                    </div>
+	                </div>
+	            </div>
+	            <!--S 排行榜-->
+	            <div class="mod_rank">
+	                <div class="title">
+	                    <h2>排行榜</h2>
+	                </div>
+	                <div class="mod_t_play"><a href="javascript:;" name="script_btn" class="mod_play" title="播放">播放</a><a href="javascript:;" name="script_btn" class="mod_add" title="添加">添加</a></div>				
+	                <div class="mod_content">
+						
+						<ul class="mod_sort_index" id="topsongTag"><li class="first current"> <a href="javascript:;"  class="">流行指数</a> </li><li> <a href="javascript:;"  class="">内地</a> </li><li> <a href="javascript:;"  class="">港台</a> </li><li> <a href="javascript:;"  class="">欧美</a> </li><li class="last"> <a href="javascript:;"  class="">韩国</a> </li></ul>
+	                    <ol class="mod_rank_list" id="topSongList">
+	                    	<li class="rank_top">
+	                    		<em>0</em><a class="mod_poster" target="contentFrame" href="" title="中国好歌曲第三季 第3期"><img src="./images/001pe3TF4Arpva.jpg" onerror="this.src='http://i.gtimg.cn/mediastyle/y/img/cover_mine_130.jpg';this.onerror=null;" width="50" height="50" alt="中国好歌曲第三季 第3期" title="中国好歌曲第三季 第3期"></a><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href=""  title="回忆 (Live) (选择导师: 陶喆)">回忆 (Live) (选...</a></h5><p><a href="" target="contentFrame" title="南征北战">南征北战</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>1</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''" class=""><a target="contentFrame" href="" title="预备爱 (Live) (选择导师: 陶喆)">预备爱 (Live) (...</a></h5><p><a href="" target="contentFrame" title="丁爽">丁爽</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>2</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''" class=""><a target="contentFrame" href="" title="无敌 (《美人鱼》电影宣传曲)">无敌 (《美人鱼》...</a></h5><p><a href="" target="contentFrame" title="邓超">邓超</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>3</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''" class=""><a target="contentFrame" href="" title="我也许在等候">我也许在等候</a></h5><p><a href="" target="contentFrame" title="庄心妍">庄心妍</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>4</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''" class=""><a target="contentFrame" href="" title="封印（Excited）">封印（Excited）</a></h5><p><a href="" target="contentFrame" title="鹿晗">鹿晗</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>5</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''" class=""><a target="contentFrame" href="" title="我好想你 (我是歌手4第5期徐佳莹参赛曲目|《小时代》电影主题曲)">我好想你 (我是歌...</a></h5><p><a href="" target="contentFrame" title="苏打绿">苏打绿</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>6</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="" title="Thinking Out Loud (第58届格莱美年度单曲获奖歌曲|2014维多利亚的秘密秀秀场音乐)">Thinking Out Lou...</a></h5><p><a href="" target="contentFrame" title="Ed Sheeran">Ed Sheeran</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>7</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="" title="单车 (我是歌手4第5期李克勤参赛曲目)">单车 (我是歌手4...</a></h5><p><a href="" target="contentFrame" title="陈奕迅">陈奕迅</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>8</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="" title="我们在蓝色海上漂 (Live) (选择导师: 羽泉)">我们在蓝色海上漂...</a></h5><p><a href="" target="contentFrame" title="邢天溯">邢天溯</a></p>
+	                    	</li>
+	                    	<li>
+	                    		<em>9</em><h5 onmouseover="this.className='hover'" onmouseout="this.className=''"><a target="contentFrame" href="" title="心里面">心里面</a></h5><p><a href="" target="contentFrame" title="李荣浩">李荣浩</a></p>
+	                    	</li>
+	                    </ol>
+	                    <ul class="mod_rank_index">
+	                        <li><a target="contentFrame" href="" title="iTunes榜">iTunes榜</a></li>
+	                        <li><a target="contentFrame" href="" title="美国公告牌">美国公告牌</a></li>
+	                        <li><a target="contentFrame" href="" title="英国UK榜">英国UK榜</a></li>
+	                        <li><a target="contentFrame" href="" title="香港新城榜">香港新城榜</a></li>
+	                        <li><a target="contentFrame" href="" title="日本公信榜">日本公信榜</a></li>
+	                        <li><a target="contentFrame" href="" title="韩国MNET">韩国MNET</a></li>
+	                        <li><a target="contentFrame" href="" title="英国UK榜">英国UK榜</a></li>
+	                        <li><a target="contentFrame" href="" title="香港电台榜">香港电台榜</a></li>
+	                        <li><a target="contentFrame" href="" title="MTV光荣榜">MTV光荣榜</a></li>
+	                    </ul>
+	                </div>
+	            </div>
+	            <!--E 排行榜-->
+	            <!--S 热门歌手-->
+	            <div class="mod_hot_singer">
+	            	<div class="title">
+	                	<h2>热门歌手</h2>
+	                </div>
+	                <div class="mod_more"><a target="contentFrame" href="" title="更多">更多</a></div>
+	                <div class="mod_content">
+	                    <div class="hot_singer_list">
+	                        <ul>
+	                            <li>
+	                                <a class="singer_pic" target="contentFrame" href=""><img alt="BIGBANG" title="BIGBANG" width="50" height="50" src="./images/004AlfUb0cVkN1.jpg"></a>
+	                                <a class="singer_name" title="BIGBANG" target="contentFrame" href="">BIGBANG</a>
+	                            </li>
+	                            <li>
+	                                <a class="singer_pic" target="contentFrame" href="" title="周杰伦"><img alt="周杰伦" title="周杰伦" width="50" height="50" src="./images/0025NhlN2yWrP4.jpg"></a>
+	                                <a class="singer_name" title="周杰伦" target="contentFrame" href="">周杰伦</a>
+	                            </li>
+	                            <li>
+	                                <a class="singer_pic" target="contentFrame" href="" title="林俊杰"><img alt="林俊杰" title="林俊杰" width="50" height="50" src="./images/001BLpXF2DyJe2.jpg"></a>
+	                                <a class="singer_name" title="林俊杰" target="contentFrame" href="">林俊杰</a>
+	                            </li>
+	                            <li>
+	                                <a class="singer_pic" target="contentFrame" href="" title="李荣浩"><img alt="李荣浩" title="李荣浩" width="50" height="50" src="./images/000aHmbL2aPXWH.jpg"></a>
+	                                <a class="singer_name" title="李荣浩" target="contentFrame" href="">李荣浩</a>
+	                            </li>
+	                            <li>
+	                                <a class="singer_pic" target="contentFrame" href="" title="陈奕迅"><img alt="陈奕迅" title="陈奕迅" width="50" height="50" src="./images/003Nz2So3XXYek.jpg"></a>
+	                                <a class="singer_name" title="陈奕迅" target="contentFrame" href="">陈奕迅</a>
+	                            </li>
+	                            <li>
+	                                <a class="singer_pic" target="contentFrame" href="" title="G-DRAGON"><img alt="G-DRAGON" title="G-DRAGON" width="50" height="50" src="./images/000t2qd13dLpae.jpg"></a>
+	                                <a class="singer_name" title="G-DRAGON" target="contentFrame" href="">G-DRAGON</a>
+	                            </li>
+	                        </ul>
+	                    </div>
+	                    <div class="hot_singer_index">
+	                    	<ul>
+	                        	<li><a target="contentFrame" href="" title="华语男歌手">华语男歌手</a></li>
+	                            <li><a target="contentFrame" href="" title="华语女歌手">华语女歌手</a></li>
+	                            <li><a target="contentFrame" href="" title="华语组合">华语组合</a></li>
+	                            <li><a target="contentFrame" href="" title="韩国男歌手">韩国男歌手</a></li>
+	                            <li><a target="contentFrame" href="" title="韩国女歌手">韩国女歌手</a></li>
+	                            <li><a target="contentFrame" href="" title="韩国组合">韩国组合</a></li>
+	                            <li><a target="contentFrame" href="" title="日本男歌手">日本男歌手</a></li>
+	                            <li><a target="contentFrame" href="" title="日本女歌手">日本女歌手</a></li>
+	                            <li><a target="contentFrame" href="" title="日本组合">日本组合</a></li>
+	                            <li><a target="contentFrame" href="" title="欧美男歌手">欧美男歌手</a></li>
+	                            <li><a target="contentFrame" href="" title="欧美女歌手">欧美女歌手</a></li>
+	                            <li><a target="contentFrame" href="" title="欧美组合">欧美组合</a></li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <!--E 热门歌手-->
+	            <!--S 精彩活动-->
+	            <div class="mod_hot_event">
+	            	<div class="title">
+	                	<h2>精彩活动</h2>
+	                </div>
+	                <div class="mod_content">
+	                    <div class="hot_event_list">
+	                    	<ul class="pic_txt_list">
+								
+	                        	<li class="top_pic"><a href="http://y.qq.com/live/xjt_qch/index.html?pgv_ref=qqmusic.y.index.Activity.pic" title="萧敬腾签唱会" target="_blank"><img width="220" alt="萧敬腾签唱会" src="./images/20160203120712.jpg">[精彩活动] 萧敬腾签唱会</a></li>
+								
+	                        	<li class="top_pic"><a href="http://y.qq.com/live/fwq/index.html?sid=&amp;g_f=?pgv_ref=qqmusic.y.index.Activity.pic" title="范玮琪尊享会回顾" target="_blank"><img width="220" alt="范玮琪尊享会回顾" src="./images/20160128151713.jpg">[精彩活动] 范玮琪尊享会回顾</a></li>
+								
+	                        </ul>
+	                    </div>
+	                </div>
+	            </div>
+	            <!--E 精彩活动-->
+	        </div>
+	</div>
+
+	<div class="foot" role="contentinfo">
+		<div class="follow_on">
+	        <dl class="soft_download">
+	            <dt>软件下载</dt>
+	            <dd><a href="http://dldir1.qq.com/music/clntupate/QQMusicForYQQ.exe" target="_blank" id="J_pc_download" title="PC版">PC版</a><a href="https://itunes.apple.com/cn/app/qq-yin-le/id414603431?mt=8" target="_blank" id="J_iphone_download" title="iPhone客户端">iPhone客户端</a><a href="https://itunes.apple.com/cn/app/qq-yin-lehd-du-bo-zhong-guo/id429885089?l=en&amp;mt=8" id="J_ipad_download" target="_blank" title="iPad客户端">iPad客户端</a></dd>
+	            <dd><a href="http://dldir1.qq.com/music/clntupate/mac/QQMusic3.1.1Build02.dmg" id="J_mac_download" target="_blank" title="MAC版">MAC版</a><a href="http://dldir1.qq.com/music/clntupate/QQMusic.apk" id="J_android_download" target="_blank" title="Android客户端">Android客户端</a><a href="http://dldir1.qq.com/qqtv/qqmusic/QQLiveForYQQ.exe" id="J_androidpad_download" target="_blank" title="Android Pad客户端">Android Pad客户端</a></dd>
+	            <dd><a href="http://www.windowsphone.com/zh-cn/store/app/qq%E9%9F%B3%E4%B9%90/bb8d2603-091e-43e4-9857-651b4d38b6b4" id="J_winphone_download" target="_blank" title="Windows Phone版">Windows Phone版</a> </dd>
+	        </dl>
+	        <dl>
+	            <dt>特色产品</dt>
+	            <dd><a href="http://y.qq.com/#type=url&amp;url=http%3A%2F%2Fy.qq.com%2Fy%2Fstatic%2Fdown%2Fcar_introduce.html" target="_blank" title="车载互联">车载互联</a></dd>
+	            <dd><a href="http://y.qq.com/y/static/down/qplay.html?pgv_ref=qqmusic.y.topmenu" target="_blank" title="QPlay">QPlay</a></dd>
+	            <dd><a href="http://cp.music.qq.com?pgv_ref=qqmusic.y.topmenu" target="_blank" title="QQ音乐原创音乐平台">QQ音乐原创音乐平台</a></dd>
+	        </dl>
+	        <dl class="friends_link">
+	            <dt>友情链接</dt>
+	            <dd><a href="http://xing.qq.com/" target="_blank" title="星钻">星钻</a><a href="http://z.qzone.com/"  target="_blank" title="手机QQ空间">手机QQ空间</a><a href="http://im.qq.com/" target="_blank" title="最新版QQ">最新版QQ</a><a href="http://v.qq.com/" target="_blank" title="腾讯视频">腾讯视频</a><a href="http://e.qq.com/" target="_blank" title="腾讯社交广告">腾讯社交广告</a></dd>
+	            <dd></dd>
+	            <dd><a href="http://guanjia.qq.com/" target="_blank" title="电脑管家">电脑管家</a><a href="http://browser.qq.com/" target="_blank" title="QQ浏览器">QQ浏览器</a><a href="http://huabao.qzone.qq.com/" target="_blank" title="画报">画报</a><a href="http://www.weiyun.com/" target="_blank" title="腾讯微云">腾讯微云</a><a href="http://act.qzone.qq.com/" target="_blank" title="黄钻活动">黄钻活动</a></dd>
+	            <dd><a href="http://fm.qq.com/" target="_blank" title="企鹅FM">企鹅FM</a><a href="http://www.qcloud.com/" target="_blank" title="腾讯云">腾讯云</a><a href="http://bbs.qcloud.com/" target="_blank" title="腾讯云论坛">腾讯云论坛</a><a href="http://buluo.qq.com/" target="_blank" title="兴趣部落">兴趣部落</a><a href="http://yunsou.qq.com/" target="_blank" title="腾讯云搜">腾讯云搜</a></dd>
+					
+	        </dl>
+	    </div>	
+		<p class="footermenu">
+			<a href="http://www.tencent.com/" rel="nofollow" target="_blank" title="关于腾讯">关于腾讯</a> | 
+			<a href="http://www.tencent.com/index_e.shtml" rel="nofollow" target="_blank" title="About Tencent">About Tencent</a> | 
+			<a href="http://www.qq.com/contract.shtml" rel="nofollow" target="_blank" title="服务条款">服务条款</a> | 
+			<a href="http://y.qq.com/y/static/tips/service_tips.html" rel="nofollow" target="_blank" title="用户服务协议">用户服务协议</a> | 
+			<a href="http://www.tencentmind.com/" rel="nofollow" target="_blank" title="广告服务">广告服务</a> | 
+			<a href="http://hr.tencent.com/" rel="nofollow" target="_blank" title="腾讯招聘">腾讯招聘</a> | 
+			<a href="http://service.qq.com/" rel="nofollow" target="_blank" title="客服中心">客服中心</a> | 
+			<a href="http://www.qq.com/map/" rel="nofollow" target="_blank" title="网站导航">网站导航</a>
+		</p>
+		<p class="copyrighten">Copyright © 1998 - <script type="text/javascript">document.write(new Date().getFullYear());</script>2016 Tencent. <a target="_blank" href="http://www.tencent.com/en-us/le/copyrightstatement.shtml" rel="nofollow" title="All Rights Reserved.">All Rights Reserved.</a></p>
+		<p class="copyrightzh">腾讯公司 <a target="_blank" href="http://www.tencent.com/zh-cn/le/copyrightstatement.shtml" rel="nofollow" title="版权所有">版权所有</a> <a target="_blank" href="http://www.tencent.com/law/mo_law.shtml?/law/copyright.htm" rel="nofollow" title="腾讯网络文化经营许可证">腾讯网络文化经营许可证</a></p>
+	</div>
+
+	<div class="visitor_cp" id="divvisitorcp">
+		<button title="返回页面顶部" class="get_top" id="btntop">置顶</button>
+		<button title="如果您有意见，请反馈给我们！" class="get_feedback" >反馈</button>
+		<button title="返回页面底部" class="get_bottom" id="btnbottom">置底</button>
+	</div>
+
+
+	<div class="m_player mini_version m_player_folded m_player_playing" id="divplayer" role="application" style="z-index: 990; left: -540px;">
+		<div class="m_player_dock" id="divsongframe">
+			<div class="music_info" id="divsonginfo">
+				<a target="contentFrame" class="album_pic" title="">
+					<img src="./images/cover_mine_130.jpg" alt="" onerror="this.src='http://imgcache.qq.com/mediastyle/y/img/cover_mine_130.jpg'">
+				</a>
+				<div class="music_info_main">
+					<p class="music_name" title="听我想听的歌！">
+						<span>听我想听的歌！</span>
+						<!-- <a  href="javascript:;" class="icon_radio">电台</a> -->
+					<p class="singer_name" title="QQ音乐">
+						QQ音乐
+					</p>
+					<p class="play_date" id="ptime"></p>
+					<p class="music_op" style="display:none;">
+						<strong class="btn_like" title="喜欢"  name="myfav_0038RM350w8m1V" mid="0038RM350w8m1V">
+							<span>我喜欢</span>
+						</strong>
+						<strong class="btn_share" title="分享" >
+							<span>分享</span>
+						</strong>
+						<strong class="btn_kge" onmouseover="this.className='btn_kge btn_kge_hover';this.style.zIndex='100';" onmouseout="this.className='btn_kge';this.style.zIndex='';" id="btnkge">
+							<span>唱这首歌</span>
+							<span class="kge_QRcode">
+								<em><img src="./images/1450859070211242471.jpg" alt="全民K歌二维码"></em>
+								<em>手机扫描二维码，唱这首歌</em>
+								<i class="kge_QRcode_logo"></i>
+								<i class="kge_QRcode_arrow"></i>
+							</span>
+						</strong>
+					</p>
+				</div>
+			</div>
+			<div class="bar_op">
+				<strong title="上一首( [ )" class="prev_bt"><span>上一首</span></strong>
+				<strong title="播放(P)" class="play_bt" id="btnplay"><span>播放</span></strong>
+				<strong title="下一首( ] )" class="next_bt"><span>下一首</span></strong>
+				<strong title="列表循环" class="cycle_bt" id="btnPlayway"><span>列表循环</span></strong>
+				<p class="volume" title="音量调节">
+					<span class="volume_icon" id="spanmute" title="点击设为静音(M)"></span>
+					<span class="volume_regulate" id="spanvolume">
+						<span class="volume_bar" style="width:100%;" id="spanvolumebar"></span>
+						<span class="volume_op" style="left:100%;" id="spanvolumeop"></span>
+					</span>
+				</p>
+			</div>
+			<p class="playbar_cp_select" id="divselect">
+				<strong title="顺序播放" class="ordered_bt" onclick="setbofangmoshi(2);">
+					<span>顺序播放</span>
+				</strong>
+				<strong title="随机播放" class="unordered_bt" onclick="setbofangmoshi(4);">
+					<span>随机播放</span>
+				</strong>
+				<strong title="单曲循环" class="cycle_single_bt" onclick="setbofangmoshi(1);">
+					<span>单曲循环</span>
+				</strong>
+				<strong title="列表循环" class="cycle_bt" onclick="setbofangmoshi(3);">
+					<span>列表循环</span>
+				</strong>
+			</p>
+			<p class="player_bar">
+				<span class="player_bg_bar" id="spanplayer_bgbar"></span>
+				<span class="download_bar" id="downloadbar" style="width:100%;"></span>
+				<span class="play_current_bar" style="width:0%;" id="spanplaybar"></span>
+				<span class="progress_op" style="left:0%;" id="spanprogress_op"></span>
+			</p>
+			<div class="time_show" style="left:240px;bottom:8px;">
+				<p id="time_show"></p>
+				<span class="icon_arrow_foot"><i class="foot_border"></i><i class="foot_arrow"></i></span>
+			</div>
+		</div>
+		<span class="active_tip" id="spanaddtips" style="display:none;top:-30px;"></span>
+		<span title="展开播放列表" class="open_list" id="spansongnum1" style="display:block;">
+			<span>10</span>
+		</span>
+		<span title="显示歌词(L)" class="btn_lyrics_disabled" id="btnlrc">歌词(L)</span>
+		<button type="button" class="folded_bt" title="点击收起" id="btnfold"><span>点击收起/展开</span></button>
+		<!--play list-->
+		<div class="play_list_frame" id="divplayframe">
+			<div class="play_list_title">
+				<!-- 单曲FM修改 -->
+				<ul id="tab_container" style="width:270px;">
+	                    <li id="playlist_tab" class="current"><a href="javascript:;" title="播放列表">播放列表</a><i></i></li>
+	                    <li id="fm_tab" style="display:none" class=""><a href="javascript:;" title="单曲电台列表">单曲电台列表</a><i></i></li>
+	            </ul>
+				<span id="clear_list" class="clear_list" >清空列表</span>
+				<strong title="收起播放列表" class="close_list" id="btnclose"></strong>
+			</div>
+			<div class="play_list" id="divlistmain" style="overflow-y:auto">
+		<!--列表为空提示_S-->
+				<div class="play_list_point" id="divnulllist" style="display:none;">
+					<div>
+						<h4>您当前还未添加任何歌曲</h4>
+						<p>您可以：</p>
+						<p>在<a href="http://y.qq.com/" title="QQ音乐">首页</a>选择试听我们推荐的歌曲。</p>
+						<p>在<a href="/y/static/singer/index/all_hot_1.html?pgv_ref=qqmusic.y.player" target="contentFrame" title="乐库">乐库</a>中查找您想听的歌曲。</p>
+					</div>
+				</div>
+		<!-- 单曲FM修改 空列表-->
+				<div class="play_list_point" id="divnullFMlist" style="display:none;">
+					<div>
+						<h4>哎呀，这首歌和其他歌曲还不熟</h4>
+						<p>你可以：</p>
+						<p>换 另一首歌曲<span style="color:#9ae40a"> 重新发起单曲电台</span>。
+						</p><p>什么是单曲电台？</p>
+						<p>当你听到一首喜欢的歌曲，我们会针对这首歌曲，为你生成一批<span style="color:#9ae40a"> 你可能也喜欢的歌曲列表</span>,并且根据你的反馈，不断优化——所以听得越多，为你推荐得越准噢！</p>
+						<p></p>
+					</div>
+				</div>
+		<!--列表为空提示_E-->
+				<div class="play_list_main" id="divplaylist" style="display:block;left:0px;top:0px;">
+					<!-- 播放列表_S-->
+					<div class="single_list" id="divsonglist" dirid="0">
+						<ul>
+							<li mid="j0" class="">
+								<!-- <strong class="music_name" title="无敌 (《美人鱼》电影宣传曲)">无敌 (《美人鱼》电影宣传曲)</strong><strong class="singer_name" title="邓超">邓超</strong><strong class="play_time">01:26</strong><div class="list_cp"><strong class="btn_like" title="喜欢" name="myfav_0038RM350w8m1V" mid="0038RM350w8m1V"><span>我喜欢</span></strong><strong class="btn_share" title="分享"><span>分享</span></strong><strong class="btn_fav" title="收藏到歌单"><span>收藏</span></strong><strong class="btn_del" title="从列表中删除"><span>删除</span></strong></div> -->
+							</li>
+						</ul>
+					</div>
+					<div id="divalbumlist"></div>
+				</div>
+				<div class="play_list_scroll">
+					<span id="spanbar" class="play_list_scrolling"></span>
+				</div>
+		<!--单曲电台列表_S-->
+            	<div class="single_radio_cont" id="FM_container" style="display:none;">
+                	<div class="single_radio_top">
+                    	<p>您正在收听以“<strong id="FM_songname">好久不见-陈奕迅</strong>”生成的单曲电台。</p>
+                	</div>
+	                <div class="single_radio_list">
+	                    <ul id="single_radio_list" style="margin-left:-150px;">
+	                        <li class="first"></li>
+	                    </ul>
+	                </div>
+	                <div class="single_radio_info" id="single_radio_info">
+	                    <a href="javascript:;" class="single_radio_like" title="喜欢"></a>
+	                    <a href="javascript:;" class="single_radio_delete" title="删除"></a>
+	                    <h3></h3>
+	                    <p></p>
+	                </div>
+            	</div>
+            <!--单曲电台列表_E-->
+			</div>
+		</div>
+		<!--歌词内容-->
+		<div class="y_player_lyrics" id="player_lyrics_pannel" style="display:none;">
+			<div class="lyrics_text" id="qrc_ctn"></div>
+			<div class="lyrics_bg"></div>
+			<span class="close_lyrics" id="closelrcpannel"></span>
+		</div>
+		<div class="single_radio_tip" id="single_radio_tip" style="display:none;">
+	        <a href="javascript:;" class="close_tips" title="关闭"></a>
+	    </div>
+	</div>
+
+
+</body>
+</html>
